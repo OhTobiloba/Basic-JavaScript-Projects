@@ -12,6 +12,7 @@ const months = [
   "November",
   "December",
 ];
+
 const weekdays = [
   "Sunday",
   "Monday",
@@ -22,6 +23,7 @@ const weekdays = [
   "Saturday",
 ];
 
+// catching the variables
 const giveaway = document.querySelector(".giveaway");
 const deadline = document.querySelector(".deadline");
 const items = document.querySelectorAll(".deadline-format h4");
@@ -33,33 +35,38 @@ const items = document.querySelectorAll(".deadline-format h4");
 // let tempMonth = tempDate.getMonth();
 // let tempDay = tempDate.getDate();
 
-let futureDate = new Date(2024, 9, 24, 12, 0, 0);
+let futureDate = new Date(2024, 9, 24, 12, .00, .00);
+// let futureDate = new Date();
 
 
 // const futureDate = new Date(tempYear, tempMonth, tempDay + 10, 12, 0, 0);
 const year = futureDate.getFullYear();
+let month = futureDate.getMonth(); // we used "let" here because this would only give a number between 0 and 11 and it needs to be converted to the value of the corresponding month;
+const weekday = weekdays[futureDate.getDay()]; // Trying to get the weekday in worsds
 const hours = futureDate.getHours();
 const mins = futureDate.getMinutes();
 
-let month = futureDate.getMonth();
 month = months[month];
 
-const date = futureDate.getDate();
-
-const weekday = weekdays[futureDate.getDay()];
+const date = futureDate.getDate(); // This presents the date in number format
 
 
 
-giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} ${hours}: ${mins}am`;
+giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} by ${hours}:${mins}am`;
 
+// so in order to do the countdown,we get the time in between the two periods by subtracting the time of the present from the future.
 
 // Future time in ms
-const futureTime = futureDate.getTime();
+const futureTime = futureDate.getTime(); // thte getTime() function would always return the time in milliseconds.
+// console.log(futureTime);
 
 function getRemainingTime() {
   const today = new Date().getTime();
+  // console.log(today);
+
 
   const t = futureTime - today;
+  // console.log(t);
   // 1s = 1000ms
   // 1m = 60s
   // 1hr = 60min
@@ -72,8 +79,9 @@ function getRemainingTime() {
   const oneMinute = 60 * 1000;
 
   // calculate all values
-  let days = t / oneDay;
-  days = Math.floor(days);
+  let days = Math.floor(t / oneDay);
+  // days = Math.floor(days);
+  // console.log(days);
   let hours = Math.floor((t % oneDay) / oneHour);
   let minutes = Math.floor((t % oneHour) / oneMinute);
   let seconds = Math.floor((t % oneMinute) / 1000);
@@ -95,17 +103,11 @@ function getRemainingTime() {
 
   if (t < 0) {
     clearInterval(countdown);
-    deadline.innerHTML = `<h4 class = "expired">sorry, this giveaway has expired</h4>`
+    deadline.innerHTML = `<h4 class = "expired">Sorry, this giveaway has expired</h4>`
   }
-
-
-
-
-
 }
 
-// coountdown 
+// countdown;
 let countdown = setInterval(getRemainingTime, 1000);
-
 
 getRemainingTime();
