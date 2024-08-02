@@ -24,8 +24,8 @@ const weekdays = [
 ];
 
 // catching the variables
-const giveaway = document.querySelector(".giveaway");
-const deadline = document.querySelector(".deadline");
+const giveaway = document.querySelector(".giveaway"); //so we can output the future date dynamically
+const deadline = document.querySelector(".deadline"); // we want to be able to update the program dynamically when the future date has been reached
 const items = document.querySelectorAll(".deadline-format h4");
 
 
@@ -35,7 +35,7 @@ const items = document.querySelectorAll(".deadline-format h4");
 // let tempMonth = tempDate.getMonth();
 // let tempDay = tempDate.getDate();
 
-let futureDate = new Date(2024, 9, 24, 12, .00, .00);
+let futureDate = new Date(2024, 9, 24, 12, 0, 0);
 // let futureDate = new Date();
 
 
@@ -57,23 +57,25 @@ giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} by
 // so in order to do the countdown,we get the time in between the two periods by subtracting the time of the present from the future.
 
 // Future time in ms
-const futureTime = futureDate.getTime(); // thte getTime() function would always return the time in milliseconds.
+const futureTime = futureDate.getTime(); // the getTime() function would always return the time in milliseconds.
 // console.log(futureTime);
 
 function getRemainingTime() {
-  const today = new Date().getTime();
+  const presentTime = new Date().getTime();
   // console.log(today);
 
 
-  const t = futureTime - today;
+  // getting the difference in time
+  const t = futureTime - presentTime;
   // console.log(t);
+
   // 1s = 1000ms
   // 1m = 60s
   // 1hr = 60min
   // 1day = 24hr
 
 
-  // values in ms
+  //Converting the values in ms to the presentable measures
   const oneDay = 24 * 60 * 60 * 1000;
   const oneHour = 60 * 60 * 1000;
   const oneMinute = 60 * 1000;
