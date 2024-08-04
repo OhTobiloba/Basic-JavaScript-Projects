@@ -81,7 +81,7 @@ const menu = [
   },
 ];
 
-const sectionCenter = document.querySelector('.section-center');
+const sectionCenter = document.querySelector('.section-center'); //where all the menus are being displayed
 const container = document.querySelector(".btn-container");
 
 
@@ -116,8 +116,8 @@ let displayMenu = menuItems.map((item) => {
           </div>
         </article>`;
   });
-
   displayMenu = displayMenu.join("");
+  // console.log(displayMenu);
 
   sectionCenter.innerHTML = displayMenu;
 }
