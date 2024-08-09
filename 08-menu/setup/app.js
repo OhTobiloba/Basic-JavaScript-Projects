@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-
+// This was to display all of the menu items
 function displayMenuItems(menuItems) {
 let displayMenu = menuItems.map((item) => {
     // console.log(item);
@@ -121,8 +121,11 @@ let displayMenu = menuItems.map((item) => {
 
   sectionCenter.innerHTML = displayMenu;
 }
+// Ending of displaying the menu items
 
 
+
+// This is to display the menu buttons
 function displayMenuBtns() {
     // get only unique categories
   const categories = menu.reduce((values, item) => {
